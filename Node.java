@@ -7,7 +7,7 @@ public class Node
 	
 	public Node(int payload)
 	{
-		this.payload = payload;
+		this.payload = payload; //added comment
 		this.nextNode = null;
 		this.previousNode = null;
 	}
