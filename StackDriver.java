@@ -19,5 +19,7 @@ public class StackDriver {
 		ll.pop();
 		ll.peek();
 		ll.pop();
+		ll.peek(); // Shows that the stack is empty
+		ll.pop(); //intentional error showing "Cannot remove from Empty Stack"
 	}
 }

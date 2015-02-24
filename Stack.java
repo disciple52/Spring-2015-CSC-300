@@ -1,12 +1,11 @@
 
 public class Stack {
 	private Node head;
-	private Node tail;
 	private int count;
 	public Stack()
 	{
 		this.head = null;
-		this.tail = null;
+
 		this.count = 0;
 	}
 	public void push(int payload)
@@ -14,35 +13,39 @@ public class Stack {
 		Node n = new Node(payload);
 		if(head == null) //empty list make head point to it
 		{
-			this.head = n; //n's value is a pointer (a memory address) that points to a node
-			this.tail = n;
+			this.head = n; 
 		}
 		else //otherwise make the new node point to the nextnode
 		{
-			this.head.setPreviousNode(n);
 			n.setNextNode(head);
 			this.head = n;
-			this.count++;
 		}
+		this.count++;
 	}
 	public int pop() throws Exception
 	{
 		if (head == null || this.count == 0)
 		{
-			throw new Exception("Cannot remove from Empty Stack");
+			throw new Exception("Cannot remove from Empty stack");
 		}
 		else
 		{
-			Node curr = head;
-			curr.getNextNode().setPreviousNode(null);
-			head = curr.getNextNode();
-			curr.setNextNode(null);
+			Node currNode = head;
+			head = head.getNextNode();
+			currNode.setNextNode(null);
 			this.count--;
-			return curr.getPayload();
+			return currNode.getPayload();
 		}
 	}
 	public void peek()
 	{
-		System.out.println(head.getPayload()); 
+		if(head == null || this.count == 0)
+		{
+			System.out.println("Empty stack");
+		}
+		else
+		{
+			System.out.println(head.getPayload());
+		}
 	}
 }
