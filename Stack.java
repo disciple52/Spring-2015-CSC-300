@@ -1,51 +1,54 @@
-
-public class Stack {
-	private Node head;
-	private int count;
+public class Stack 
+{
+	private Node top;
+	
 	public Stack()
 	{
-		this.head = null;
-
-		this.count = 0;
+		this.top = null;
 	}
+	
+	public boolean isEmpty()
+	{
+		return this.top == null;
+	}
+	
 	public void push(int payload)
 	{
 		Node n = new Node(payload);
-		if(head == null) //empty list make head point to it
+		if(this.top == null)
 		{
-			this.head = n; 
+			this.top = n;
 		}
-		else //otherwise make the new node point to the nextnode
+		else
 		{
-			n.setNextNode(head);
-			this.head = n;
+			n.setNextNode(this.top);
+			this.top = n;
 		}
-		this.count++;
 	}
+	
 	public int pop() throws Exception
 	{
-		if (head == null || this.count == 0)
+		if(this.top == null)
 		{
-			throw new Exception("Cannot remove from Empty stack");
+			throw new Exception("Empty Stack!!!  Cry More");
 		}
 		else
 		{
-			Node currNode = head;
-			head = head.getNextNode();
-			currNode.setNextNode(null);
-			this.count--;
-			return currNode.getPayload();
+			int valToReturn = this.top.getPayload();
+			this.top = this.top.getNextNode();
+			return valToReturn;
 		}
 	}
-	public void peek()
+	
+	public int peek() throws Exception
 	{
-		if(head == null || this.count == 0)
+		if(this.top == null)
 		{
-			System.out.println("Empty stack");
+			throw new Exception("Emtpy Stack!!!  Cry More");
 		}
 		else
 		{
-			System.out.println(head.getPayload());
+			return this.top.getPayload();
 		}
 	}
 }
